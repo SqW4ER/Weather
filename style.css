@@ -12,7 +12,7 @@
 input:focus,
 textarea:focus,
 select:focus {
-  outline: none;
+  outline: none !important;
 }
 
 .weather-app {
@@ -22,13 +22,15 @@ select:focus {
 /*-----------------------------------------------------------*/
 .weather-app .search-form {
   border: 0.5px solid black;
+  display: flex;
+  justify-content: space-between;
 }
 
 .weather-app .search-form .search-text {
-  width: 90%;
+  width: 85%;
 }
 .weather-app .search-form .search-button {
-  width: 9%;
+  width: 15%;
 }
 /*------------------------------------------------------------*/
 .weather-app .info-block {
@@ -62,6 +64,7 @@ select:focus {
   align-items: center;
   text-transform: uppercase;
   text-decoration: none;
+  height: 18px;
 }
 
 .tabs_block {
@@ -174,4 +177,70 @@ select:focus {
 
 .location-list-ul {
   cursor: pointer;
+}
+
+@media (max-width: 700px) {
+  .container {
+    max-width: 500px;
+  }
+  .search-button,
+  .city-like {
+    font-size: 10px;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  li {
+    font-size: 15px;
+  }
+  a {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    max-width: 320px;
+  }
+  .search-button,
+  .city-like {
+    font-size: 6px;
+  }
+  h2 {
+    font-size: 1em;
+  }
+  h3 {
+    font-size: 0.8em;
+  }
+  li {
+    font-size: 13px;
+  }
+  a {
+    font-size: 0.5em;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    min-width: 320px;
+  }
+  .search-button,
+  .city-like {
+    font-size: 6px;
+  }
+  h2 {
+    font-size: 0.8em;
+  }
+  h3 {
+    font-size: 0.6em;
+  }
+  li {
+    font-size: 10px;
+  }
+  a {
+    font-size: 0.3em;
+  }
 }

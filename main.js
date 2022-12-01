@@ -1,15 +1,23 @@
-getWeather("Набережные Челны");
+import {
+  saveFavoriteCities,
+  saveCurrentCity,
+  getFavoriteCities,
+  getCurrentCity,
+} from "./save_cities.js";
+
+getWeather(getCurrentCity());
 const CITY_LIST = [];
 
 function getCityName() {
   let cityName = document.querySelector(".search-text").value;
   if (cityName) {
     getWeather(cityName);
+    saveCurrentCity(cityName);
   } else alert("Введите название города");
 }
 
 function getWeather(city) {
-  const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
+  const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
   const cityName = city;
   const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
   const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
@@ -76,16 +84,27 @@ function render() {
     });
     getList.append(listItem);
   });
+  saveFavoriteCities(CITY_LIST);
 }
 
 let searchButton = document.querySelector(".search-button");
 searchButton.addEventListener("click", (event) => {
   event.preventDefault();
   getCityName();
+  render();
 });
 
 let saveButton = document.querySelector(".city-like");
 saveButton.addEventListener("click", (event) => {
   event.preventDefault();
   saveCity();
+  render();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  let loadList = getFavoriteCities();
+  loadList.forEach((element) => {
+    CITY_LIST.push(element);
+  });
+  render();
 });
