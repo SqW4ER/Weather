@@ -81,6 +81,7 @@ function render() {
     listItem.addEventListener("click", (evt) => {
       evt.preventDefault();
       getWeather(element);
+      saveCurrentCity(element);
     });
     getList.append(listItem);
   });
