@@ -161,6 +161,9 @@ select:focus {
 .search-button {
   background: none;
 }
+.search-button img {
+  width: 30%;
+}
 
 .weather-icon {
   height: 100%;
