@@ -9,19 +9,23 @@ getWeather(getCurrentCity());
 const CITY_LIST = [];
 
 function getCityName() {
-  let cityName = document.querySelector(".search-text").value;
+  const cityName = document.querySelector(".search-text").value;
   if (cityName) {
     getWeather(cityName);
     saveCurrentCity(cityName);
   } else alert("Введите название города");
 }
 
-function getWeather(city) {
-  const serverUrl = "https://api.openweathermap.org/data/2.5/weather";
-  const cityName = city;
+function serverConnect(city) {
+  const serverUrl = "https://api.openweathermap.org";
   const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
-  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}`;
-  let response = fetch(url);
+  const url = `${serverUrl}/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  return url;
+}
+
+function getWeather(city) {
+  const url = serverConnect(city);
+  const response = fetch(url);
   response
     .then((resp) => resp.json())
     .then((value) => {
@@ -33,9 +37,9 @@ function getWeather(city) {
         icon.src = `https://openweathermap.org/img/wn/${value.weather[0].icon}@4x.png`;
         icon.hidden = false;
 
-        let cities = document.querySelectorAll(".city-name");
+        const cities = document.querySelectorAll(".city-name");
         for (let key of cities) {
-          key.textContent = cityName;
+          key.textContent = city;
         }
 
         getDetails(value);
@@ -72,11 +76,26 @@ function saveCity() {
   render();
 }
 
+function likeCheck() {
+  const currentCityName = getCurrentCity();
+  const favoriteCityArray = getFavoriteCities();
+  if (favoriteCityArray.includes(currentCityName)) {
+    const likeImage = document.querySelector(".city-like-img");
+    likeImage.src = "img/heart.png";
+    likeImage.hidden = false;
+  } else {
+    const likeImage = document.querySelector(".city-like-img");
+    likeImage.src = "img/empty_heart.png";
+    likeImage.hidden = false;
+  }
+}
+
 function render() {
-  let getList = document.querySelector(".location-list-ul");
+  const getList = document.querySelector(".location-list-ul");
   getList.innerHTML = "";
+  likeCheck();
   CITY_LIST.forEach((element) => {
-    let listItem = document.createElement("li");
+    const listItem = document.createElement("li");
     listItem.textContent = element;
     listItem.addEventListener("click", (evt) => {
       evt.preventDefault();

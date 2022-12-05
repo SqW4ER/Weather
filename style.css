@@ -153,6 +153,15 @@ select:focus {
   height: 33.333%;
 }
 
+.city-like {
+  border: none;
+  background: none;
+}
+
+.search-button {
+  background: none;
+}
+
 .weather-icon {
   height: 100%;
 }
