@@ -156,6 +156,13 @@ select:focus {
 .city-like {
   border: none;
   background: none;
+  width: 32px;
+  height: 32px;
+}
+
+.city-like img {
+  width: 100%;
+  height: 100%;
 }
 
 .search-button {
@@ -195,10 +202,6 @@ select:focus {
   .container {
     max-width: 500px;
   }
-  .search-button,
-  .city-like {
-    font-size: 10px;
-  }
   h2 {
     font-size: 1.2em;
   }
@@ -211,15 +214,15 @@ select:focus {
   a {
     font-size: 0.8em;
   }
+  .city-like {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (max-width: 500px) {
   .container {
     max-width: 320px;
-  }
-  .search-button,
-  .city-like {
-    font-size: 6px;
   }
   h2 {
     font-size: 1em;
@@ -233,16 +236,17 @@ select:focus {
   a {
     font-size: 0.5em;
   }
+  .city-like {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 @media (max-width: 320px) {
   .container {
     min-width: 320px;
   }
-  .search-button,
-  .city-like {
-    font-size: 6px;
-  }
+
   h2 {
     font-size: 0.8em;
   }
