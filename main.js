@@ -89,7 +89,7 @@ function likeCheck() {
     likeImage.hidden = false;
   } else if (favoriteCityArray === null) {
     likeImage.hidden = true;
-  } else {
+  } else if (favoriteCityArray.includes(currentCityName) === false) {
     likeImage.src = "img/empty_heart.png";
     likeImage.hidden = false;
   }
