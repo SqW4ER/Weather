@@ -36,12 +36,12 @@ function getWeather(city) {
         const icon = document.querySelector(".weather-icon");
         icon.src = `https://openweathermap.org/img/wn/${value.weather[0].icon}@4x.png`;
         icon.hidden = false;
-
+        likeCheck();
         const cities = document.querySelectorAll(".city-name");
         for (let key of cities) {
           key.textContent = city;
         }
-
+        
         getDetails(value);
         saveCurrentCity(city);
       } catch {
@@ -49,7 +49,6 @@ function getWeather(city) {
       }
     })
     .catch((error) => alert(error.message));
- likeCheck();
 }
 
 function getDetails(data) {
