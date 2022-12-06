@@ -5,14 +5,14 @@ import {
   getCurrentCity,
 } from "./save_cities.js";
 
-getWeather(getCurrentCity());
+//getWeather(getCurrentCity());
 const CITY_LIST = [];
 
 function getCityName() {
   const cityName = document.querySelector(".search-text").value;
   if (cityName) {
     getWeather(cityName);
-    saveCurrentCity(cityName);
+    //saveCurrentCity(cityName);
   } else alert("Введите название города");
 }
 
@@ -43,6 +43,7 @@ function getWeather(city) {
         }
 
         getDetails(value);
+        saveCurrentCity(city);
       } catch {
         alert(value.message);
       }
@@ -79,12 +80,16 @@ function saveCity() {
 function likeCheck() {
   const currentCityName = getCurrentCity();
   const favoriteCityArray = getFavoriteCities();
-  if (favoriteCityArray.includes(currentCityName)) {
-    const likeImage = document.querySelector(".city-like-img");
+  const likeImage = document.querySelector(".city-like-img");
+  if (
+    favoriteCityArray != null &&
+    favoriteCityArray.includes(currentCityName)
+  ) {
     likeImage.src = "img/heart.png";
     likeImage.hidden = false;
+  } else if (favoriteCityArray === null) {
+    likeImage.hidden = true;
   } else {
-    const likeImage = document.querySelector(".city-like-img");
     likeImage.src = "img/empty_heart.png";
     likeImage.hidden = false;
   }
@@ -122,9 +127,15 @@ saveButton.addEventListener("click", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  let loadList = getFavoriteCities();
-  loadList.forEach((element) => {
-    CITY_LIST.push(element);
-  });
+  const loadList = getFavoriteCities();
+  if (loadList !== null) {
+    loadList.forEach((element) => {
+      CITY_LIST.push(element);
+    });
+  }
+  const currentCity = getCurrentCity();
+  if (currentCity !== null) {
+    getWeather(getCurrentCity());
+  }
   render();
 });
