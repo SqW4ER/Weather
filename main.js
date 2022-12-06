@@ -1,3 +1,4 @@
+"use strict";
 import {
   saveFavoriteCities,
   saveCurrentCity,
@@ -5,14 +6,13 @@ import {
   getCurrentCity,
 } from "./save_cities.js";
 
-//getWeather(getCurrentCity());
 const CITY_LIST = [];
 
 function getCityName() {
   const cityName = document.querySelector(".search-text").value;
   if (cityName) {
+    saveCurrentCity(cityName);
     getWeather(cityName);
-    //saveCurrentCity(cityName);
   } else alert("Введите название города");
 }
 
@@ -24,6 +24,7 @@ function serverConnect(city) {
 }
 
 function getWeather(city) {
+  likeCheck();
   const url = serverConnect(city);
   const response = fetch(url);
   response
@@ -36,14 +37,12 @@ function getWeather(city) {
         const icon = document.querySelector(".weather-icon");
         icon.src = `https://openweathermap.org/img/wn/${value.weather[0].icon}@4x.png`;
         icon.hidden = false;
-        likeCheck();
         const cities = document.querySelectorAll(".city-name");
         for (let key of cities) {
           key.textContent = city;
         }
-        
+
         getDetails(value);
-        saveCurrentCity(city);
       } catch {
         alert(value.message);
       }
@@ -69,27 +68,33 @@ function getDetails(data) {
 function saveCity() {
   const cityName = document.querySelector(".city-name").textContent;
   const cityIndex = CITY_LIST.indexOf(cityName);
+  const likeImage = document.querySelector(".city-like-img");
   if (cityIndex === -1) {
     CITY_LIST.push(cityName);
+    likeImage.src = "img/heart.png";
   } else {
     CITY_LIST.splice(cityIndex, 1);
+    likeImage.src = "img/empty_heart.png";
   }
-  render();
 }
 
 function likeCheck() {
   const currentCityName = getCurrentCity();
+  console.log(currentCityName);
   const favoriteCityArray = getFavoriteCities();
+  console.log(favoriteCityArray);
   const likeImage = document.querySelector(".city-like-img");
-  if (
-    favoriteCityArray != null &&
-    favoriteCityArray.includes(currentCityName)
-  ) {
-    likeImage.src = "img/heart.png";
-    likeImage.hidden = false;
-  } else if (favoriteCityArray === null) {
-    likeImage.hidden = true;
-  } else if (favoriteCityArray.includes(currentCityName) === false) {
+  if (favoriteCityArray != null) {
+    if (favoriteCityArray.includes(currentCityName)) {
+      console.log(2);
+      likeImage.src = "img/heart.png";
+      likeImage.hidden = false;
+    } else {
+      console.log(1);
+      likeImage.src = "img/empty_heart.png";
+      likeImage.hidden = false;
+    }
+  } else {
     likeImage.src = "img/empty_heart.png";
     likeImage.hidden = false;
   }
@@ -98,7 +103,6 @@ function likeCheck() {
 function render() {
   const getList = document.querySelector(".location-list-ul");
   getList.innerHTML = "";
-  likeCheck();
   CITY_LIST.forEach((element) => {
     const listItem = document.createElement("li");
     listItem.textContent = element;
@@ -112,8 +116,8 @@ function render() {
   saveFavoriteCities(CITY_LIST);
 }
 
-let searchButton = document.querySelector(".search-button");
-searchButton.addEventListener("click", (event) => {
+let searchForm = document.querySelector(".search-form");
+searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
   getCityName();
   render();
