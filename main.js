@@ -49,6 +49,7 @@ function getWeather(city) {
       }
     })
     .catch((error) => alert(error.message));
+ render();
 }
 
 function getDetails(data) {
