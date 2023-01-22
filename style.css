@@ -1,3 +1,8 @@
+:root {
+  --main-text-color: #797777;
+  --tabs-bg-color: black;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -102,6 +107,11 @@ select:focus {
   right: 0;
 }
 
+.options span {
+  position: relative;
+  z-index: 2;
+}
+
 .right-sidebar {
   border: 1px solid;
   display: flex;
@@ -158,6 +168,7 @@ select:focus {
   background: none;
   width: 32px;
   height: 32px;
+  cursor: pointer;
 }
 
 .city-like img {
@@ -176,7 +187,8 @@ select:focus {
   height: 100%;
 }
 
-.details-header {
+.details-header,
+.forecast-header {
   height: 20%;
   padding: 10px;
 }
@@ -197,6 +209,46 @@ select:focus {
 .location-list-ul {
   cursor: pointer;
 }
+/*-----------------------------------FORECAST------------------------------------------*/
+
+.forecast-list {
+  margin: 0 auto;
+  height: 80%;
+  width: 100%;
+}
+
+.forecast-list ul {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.forecast-list li {
+  border: 1px solid black;
+  display: block;
+  margin: 0 auto;
+  height: 100px;
+  width: 90%;
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.forecast-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.forecast-item:nth-child(2) {
+  margin-top: 30px;
+}
+
+.forecast-image {
+  width: 30px;
+  height: 30px;
+}
+
+/*----------------------------------MEDIA QUERY---------------------------------------*/
 
 @media (max-width: 700px) {
   .container {

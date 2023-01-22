@@ -22,7 +22,7 @@
                             <div class="now-ico"><img class="weather-icon" src="https://openweathermap.org/img/wn/01d@4x.png" alt="weather icon" hidden></div>
                             <div class="now-cityname">
                                 <h3 class="city-name"></h3>
-                                <button class="city-like"><img class="city-like-img" src="img/empty_heart.png" alt="Like Button" hidden></button>
+                                <button class="city-like"><img id="like-button" class="city-like-img" src="img/empty_heart.png" alt="Like Button" hidden></button>
                             </div>
                         </div>
 
@@ -34,32 +34,44 @@
                                 <ul>
                                     <li>
                                         <p>Temperature: </p>
-                                        <span class="temp-details">14</span>
+                                        <span class="temp-details">Введите город</span>
                                     </li>
                                     <li>
                                         <p>Feels like:</p>
-                                        <span class="feel-details">10</span>
+                                        <span class="feel-details">Введите город</span>
                                     </li>
                                     <li>
                                         <p>Weather:</p>
-                                        <span class="weather-details">Clouds</span>
+                                        <span class="weather-details">Введите город</span>
                                     </li>
                                     <li>
                                         <p>Sunrise:</p>
-                                        <span class="sunrise-details">03:21</span>
+                                        <span class="sunrise-details">Введите город</span>
                                     </li>
                                     <li>
                                         <p>Sunset:</p>
-                                        <span class="sunset-details">18:54</span>
+                                        <span class="sunset-details">Введите город</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
+                        <div id="forecast" class="tabs_block">
+                            <div class="forecast-header">
+                                <h3 class="city-name"></h3>
+                            </div>
+                            <div class="forecast-list">
+                                <ul class="forecast-list-ul">
+                                </ul>
+                            </div>
+                           
+                            
+                        </div>
+
                         <div class="options">
-                                <a href="#now" class="option_item">Now</a>
-                                <a href="#details" class="option_item">Details</a>
-                                <a href="#forecast" class="option_item">Forecast</a>
+                                <a href="#now" class="option_item"><span>Now</span></a>
+                                <a href="#details" class="option_item"><span>Details</span></a>
+                                <a href="#forecast" class="option_item"><span>Forecast</span></a>
                         </div> 
                     </div>
                     <div class="right-sidebar">
@@ -75,7 +87,7 @@
             </div>
         </div>
     </main>
-    <script type="module" src="main.js"></script>
-    <script type="module" src="save_cities.js"></script>
+    <script type="module" src="../src/index.js" defer></script>
+    <script type="module" src="../src/save_cities.js" defer></script>
 </body>
 </html>
