@@ -234,3 +234,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   render()
 })
+
+window.onload = function() {
+            window.location.hash = 'now';
+        };
