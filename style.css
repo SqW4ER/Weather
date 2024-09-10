@@ -80,6 +80,10 @@ select:focus {
   justify-content: space-between;
 }
 
+.tabs_block.active {
+  display: flex;
+}
+
 .tabs_block:target {
   display: flex;
 }
